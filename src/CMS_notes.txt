@@ -1,0 +1,162 @@
+                                      contact Management system
+                                    --------------------------------
+
+Basic buliding blocks
+----------------------
+1.Module - used to add 3rd party libraries
+2. compenent - To create Html pages(html, css , ts)
+3.Selector - Used to select the compoent 
+4.services - Used to share data b/w components
+5.Dependency Injection - Data share b/w two classes
+
+
+                  CMS Steps
+                --------------
+
+1.create a angular project - ng new contact-app
+2. cd contact-app
+3. code .
+4. project Run ng serve --open
+5. Install bootstrap , fontawesome , google fonts
+         1) boostrap install - npm i bootstrap 
+         2) font awesome install - npm i @fortawesome/fontawesome-free 
+         3) config - To aviod site down problem
+6. component creation 
+        1 contact manger - ng g c contactManager (it will display all contact and manage them)
+        2 Add contact - ng g c addContact(Add )
+        3 Upadate Contact - ng g c UpdateContact
+        4 View Contact - ng g c ViewContact
+7. Routing- setup path for each component that we need to display in the web page.
+    app-routing.module.ts(filename) , Routes[]
+
+    1 http://localhost:4200/contact-manager(/admin)
+
+    Routes[
+      {
+        path:'',redirectedTo:'contact/admin',pathMath:'full'
+
+      }
+          {
+             path:'',component:'contact-manager',pathMath:'full'
+          }
+    ]
+     2. use <router-outlet></router-outlet> selecter inside the app.component.htmlpage to view the requested component
+    
+8. Create Page Not Found component - ng g c component
+  To set  path for it -
+  {
+     path:'**',component:PageNotFoundComponent
+  }
+
+9. create navbar and footer
+
+10. Complete design of frontend components
+
+11. API creation
+    open jsonplace holder site -> my json server(for demo purposes)
+
+12. Server API Creation 
+    1) Create a folder inside the project folder src/server 
+    2) Create a db.json file in the server folder 
+    3) Add your data into the  db.json file
+    4) Backend setup
+         i) create a package.json for server -  npm init
+         ii) For runing db.json file- npm i json-server
+        iii) run - npm start
+            error->  in package.json
+            "script":{
+             "start":"json-server --watch db.json --port 3000"
+            }
+13. create a model for contact and group
+    -create model folder in src folder
+    -create mycontact.ts file in model folder
+    -create  mygroup.ts file in model folder
+
+[to run the server cd src->
+cd server->
+npm start]
+
+14. Data fetching
+  JS - Data fetching ->  promise -> .then() catch()
+  TS - Data fetching -> observable -> .subscribe()  catch() - rxjs (To perform resolving asynchronous action)
+
+15. Create services -ng g s service_name
+          [services - Reuaseable code that can be share b/w components]
+        
+      ng g s service/api
+
+16. To get http methods - get,post,put,delete
+    i) Import httpClientModule in app.module.ts
+
+17. Dependency Injection - Data share b/w two classes
+   -perform inside the constructor
+   -syntax: access specifier varible_name: class_name
+
+18. Dependency Injection in the api services
+     private http:HttpClient
+
+19. Data Binding - Data sharing inside a components
+  1)One way  Data Binding - Data passes through one direction
+                           component -ts
+                            view -htmlm 
+                             html-> ts or ts->html
+         a)Component to view (ts -> html)
+            1)String interpolation{{variable_name}}
+             2)Property Binding [attribute _name]="property_name"
+         b)view to component (html -> ts)
+             1) Event Bonding
+              (event)="function_name()"
+                note: js onclick
+                ts - click
+             2)Event binding using $event
+                (event)=function_name($event)
+
+
+
+
+  2)two way data binding - Data passes to two direction
+             html -> ts
+
+20. Directives - To manipulate html DOM 
+    1)Component Directives
+    2)Structural Directives 
+        i)*ngIf="condition"
+        ii)*ngFor="let var_name of array_name"
+     
+21)Activated Route(class) - It provides access to information about a route associated  with a component this is loaded in an outlet
+     
+     parameters-
+        -url
+        -params 
+    
+22)Understanding Pipes
+use pipes to transform strings, 
+
+DatePipe: Formats a date value according to local rules.
+
+Searching- Pipes 
+ creating Pipes -ng g p pipefloder/pipe_name
+                -ng g p pipes/filter
+
+PipeTransform
+INTERFACE/CLASS
+An interface that is implemented by pipes in order to perform a transformation. 
+Angular invokes the transform method with the value of a binding as the first argument,
+ and any parameters as the second argument in list form.
+
+ transform(value: any, ...args: any[]): any{
+
+ }
+
+ parameters for Searching:-
+  
+  1 allContact - array (array of contact details)
+  2 searchkey - to enter a search value
+  3 porpName - The value to be based on a content 
+
+23)Event Binding -for searching
+
+24)Add contact- two data binding
+
+              ngmodel - import formModules in appModules
+              [(ngModel)]="property_name"
